@@ -1,0 +1,59 @@
+<div class="page-header" style="position: fixed; top: 1em;">
+  <h1>Find apartments in <small>{{pageTitle}}</small></h1>
+</div>
+
+<div class="row">
+
+  <div class="col-md-7" style="position: fixed; top: 10em;">
+    <ui-gmap-google-map
+    center="map.center"
+    zoom="map.zoom"
+    options="options">
+    <ui-gmap-markers
+    models="content"
+    coords="'self'"
+    options="{draggable: false,labelClass:'marker-labels',labelAnchor:'12 60',labelContent:title}"
+    idkey="id"
+    fit="true">
+    <ui-gmap-windows show="show">
+      <div ng-non-bindable>
+        <h4><small>{{title}}</small></h4>
+        <img class="thumbnail" src="{{thumbnail}}" alt="{{title}}">
+        <p>{{price}}<br/>
+          {{street}}<br/>
+          {{city}}, {{region}}
+        </p>
+        <p><button class="btn btn-primary" onclick="$('html, body').animate({scrollTop: $({{id}}).offset().top-65}, 'slow')">More Info</button></p>
+      </div>
+    </ui-gmap-windows>
+  </ui-gmap-markers>
+</ui-gmap-google-map>
+</div>
+
+<div class="col-md-5 col-md-offset-7" style="position: absolute; top: 2em">
+  <div class="media" ng-repeat="apartment in content" >
+    <hr id="{{apartment.id}}">
+    <div class="media-left">
+        <img class="media-object" ng-src="{{apartment.thumbnail}}" alt="{{apartment.title}}">
+      </a>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">{{apartment.title}}</h4>
+      <p>{{apartment.price}}</p>
+      <p>
+        <small>{{apartment.contact}}</small><br/>
+        <small>{{apartment.street}}</small><br/>
+        <small>{{apartment.city}}, {{apartment.region}}</small>
+      </p>
+      <ul>
+        <li>{{apartment.features[0]}}</li>
+        <li>{{apartment.features[1]}}</li>
+        <li>{{apartment.features[2]}}</li>
+      </ul>
+      <p><span class="label label-info">{{apartment.floorplan}}</span></p>
+    </div>
+  </div>
+</div>
+
+
+</div>
